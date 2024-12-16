@@ -16,18 +16,31 @@ class Happy_Plugin {
 
     private static $instance;
 
-    private function __contruct() {
+    private function __construct() {
+
+        $this->defined_contants();
+        $this->loaded_classes();
 
     }
 
     public static function get_instance() {
 
-        if( self::$instance){
+        if( self::$instance) {
             return self::$instance;
         }
         self::$instance =  new self();
 
         return self::$instance;
+    }
+    private function defined_contants() {
+        define('HAPPY_PLUGIN_PATH', plugin_dir_path( __FILE__ )); 
+
+    }
+
+    private function loaded_classes() {
+        require_once HAPPY_PLUGIN_PATH. "includes/Admin_Menu.php";
+
+        new Admin_Menu();
     }
 }
 
