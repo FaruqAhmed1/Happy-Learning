@@ -20,11 +20,15 @@ class Admin_Menu {
     }
 
     public function query_post_callback() {
-        ?>
-        <h1>hello world</h1>
 
-        <?php
+        $posts  = get_posts(array(
 
+            'post_type' => 'post',
+            'post_per_page'=> 10
+
+        ));
+        
+        include HAPPY_PLUGIN_PATH . 'includes\templates\query-post.php';
     }
 
 }
