@@ -21,12 +21,22 @@ class Admin_Menu {
 
     public function query_post_callback() {
 
-        $posts  = get_posts(array(
-
+        $cat_filter = 0 ;
+        if( $_GET['cat_filter'] ) {
+            $cat_filter = $_GET['cat_filter'];
+        }
+        $args = array(
             'post_type' => 'post',
             'post_per_page'=> 10
+        );
+        if( !empty( $cat_filter ) ) {
+            $args['cat'] = $cat_filter;
+        }
 
-        ));
+        $posts  = get_posts($args);
+        $terms = get_terms( array(
+            'taxonomy'   => 'category',
+        ) );
         
         include HAPPY_PLUGIN_PATH . 'includes\templates\query-post.php';
     }
