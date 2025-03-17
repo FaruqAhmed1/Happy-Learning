@@ -40,9 +40,11 @@ class Happy_Plugin {
     private function loaded_classes() {
         require_once HAPPY_PLUGIN_PATH. "includes/Admin_Menu.php";
         require_once HAPPY_PLUGIN_PATH. "includes/Custom_Column.php";
+        require_once HAPPY_PLUGIN_PATH. "includes/Custom_Post_Type.php";
 
         new Admin_Menu();
         new Happy_Plugin\Custom_Columns();
+        new Happy_Plugin\Custom_Post_Type();
     }
 }
 
